@@ -4,11 +4,14 @@ import { CartItemRow } from "../components/cart/CartItemRow"
 import { Button } from "../components/ui/Button"
 import { Card } from "../components/ui/Card"
 import { useCart } from "../context/CartContext"
+import { useSeo } from "../hooks/useSeo"
 import { ApiError } from "../services/api"
 import { createOrder } from "../services/orders"
 import { formatPrice } from "../utils/formatPrice"
 
 export function Cart() {
+  useSeo({ title: "Cart", description: "Review your cart and checkout.", noIndex: true })
+
   const { items, subtotal } = useCart()
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)

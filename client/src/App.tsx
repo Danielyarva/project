@@ -10,6 +10,7 @@ import { AdminProducts } from "./pages/admin/AdminProducts"
 import { Cart } from "./pages/Cart"
 import { Contact } from "./pages/Contact"
 import { Home } from "./pages/Home"
+import { NotFound } from "./pages/NotFound"
 import { OrderConfirmation } from "./pages/OrderConfirmation"
 import { ProductDetail } from "./pages/ProductDetail"
 import { Shop } from "./pages/Shop"
@@ -25,6 +26,7 @@ function App() {
         <Route path="order-confirmation" element={<OrderConfirmation />} />
         <Route path="account" element={<Account />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
 
       <Route
@@ -41,6 +43,7 @@ function App() {
         <Route path="products/:id/edit" element={<AdminProductForm />} />
         <Route path="orders" element={<AdminOrders />} />
         <Route path="contact-messages" element={<AdminContactMessages />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )

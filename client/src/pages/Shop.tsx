@@ -3,8 +3,14 @@ import { Chip } from "../components/ui/Chip"
 import { SearchInput } from "../components/ui/SearchInput"
 import { ProductGrid } from "../components/product/ProductGrid"
 import { useProducts } from "../hooks/useProducts"
+import { useSeo } from "../hooks/useSeo"
 
 export function Shop() {
+  useSeo({
+    title: "Shop",
+    description: "Browse handmade mortar and pestle sets in granite, marble, and wood.",
+  })
+
   const { products, loading, error } = useProducts()
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState<string | null>(null)

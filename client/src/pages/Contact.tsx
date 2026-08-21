@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { Button } from "../components/ui/Button"
+import { useSeo } from "../hooks/useSeo"
 import { ApiError } from "../services/api"
 import { sendContactMessage } from "../services/contact"
 
 export function Contact() {
+  useSeo({
+    title: "Contact Us",
+    description: "Questions about an order or a custom piece? Get in touch with Mortar & Pestle Co.",
+  })
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { StarRating } from "../components/ui/StarRating"
@@ -8,6 +8,7 @@ import { SizeChips } from "../components/product/SizeChips"
 import { ReviewsSection } from "../components/review/ReviewsSection"
 import { useCart } from "../context/CartContext"
 import { useProduct } from "../hooks/useProduct"
+import { useSeo } from "../hooks/useSeo"
 import { formatPrice } from "../utils/formatPrice"
 
 export function ProductDetail() {
@@ -16,6 +17,40 @@ export function ProductDetail() {
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [justAdded, setJustAdded] = useState(false)
+
+  const jsonLd = useMemo(() => {
+    if (!product) return undefined
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      image: product.images,
+      sku: product.slug,
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: product.price,
+        availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      },
+      ...(product.numReviews > 0
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: product.avgRating,
+              reviewCount: product.numReviews,
+            },
+          }
+        : {}),
+    }
+  }, [product])
+
+  useSeo({
+    title: product?.name ?? "Product",
+    description: product?.description ?? "Handmade mortar and pestle, carved from natural stone or wood.",
+    image: product?.images[0],
+    jsonLd,
+  })
 
   if (loading) {
     return (

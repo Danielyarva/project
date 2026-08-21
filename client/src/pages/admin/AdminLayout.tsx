@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom"
+import { useSeo } from "../../hooks/useSeo"
 
 const tabs = [
   { to: "/admin/products", label: "Products" },
@@ -7,6 +8,8 @@ const tabs = [
 ]
 
 export function AdminLayout() {
+  useSeo({ title: "Admin", description: "Store administration.", noIndex: true })
+
   return (
     <div className="min-h-svh bg-bg text-text-primary">
       <header className="border-b border-border bg-surface px-4 py-4 sm:px-8">

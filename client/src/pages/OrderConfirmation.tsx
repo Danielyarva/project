@@ -3,11 +3,14 @@ import { NavLink, useSearchParams } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { Card } from "../components/ui/Card"
 import { useCart } from "../context/CartContext"
+import { useSeo } from "../hooks/useSeo"
 import { getOrderBySession } from "../services/orders"
 import { formatPrice } from "../utils/formatPrice"
 import type { Order } from "../types/order"
 
 export function OrderConfirmation() {
+  useSeo({ title: "Order Confirmation", description: "Your order confirmation.", noIndex: true })
+
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get("session_id")
   const { clearCart } = useCart()

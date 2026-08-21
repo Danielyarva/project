@@ -2,8 +2,11 @@ import { NavLink } from "react-router-dom"
 import { Card } from "../components/ui/Card"
 import { ThemeToggle } from "../components/ui/ThemeToggle"
 import { useAuth } from "../context/AuthContext"
+import { useSeo } from "../hooks/useSeo"
 
 export function Account() {
+  useSeo({ title: "Account", description: "Manage your account and preferences.", noIndex: true })
+
   const { user } = useAuth()
 
   return (
