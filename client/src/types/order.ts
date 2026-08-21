@@ -26,3 +26,7 @@ export interface Order {
   stripeSessionId?: string
   createdAt: string
 }
+
+export interface AdminOrder extends Omit<Order, "user"> {
+  user: { _id: string; name: string; email: string } | null
+}

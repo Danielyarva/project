@@ -5,6 +5,8 @@ import helmet from "helmet"
 import { env } from "./config/env.js"
 import { isAdmin, protect } from "./middleware/auth.js"
 import { errorHandler, notFound } from "./middleware/errorHandler.js"
+import { adminContactRoutes } from "./routes/adminContactRoutes.js"
+import { adminOrderRoutes } from "./routes/adminOrderRoutes.js"
 import { adminProductRoutes } from "./routes/adminProductRoutes.js"
 import { authRoutes } from "./routes/authRoutes.js"
 import { contactRoutes } from "./routes/contactRoutes.js"
@@ -38,6 +40,8 @@ app.use("/api/products", productRoutes)
 app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
 app.use("/api/contact", contactRoutes)
 app.use("/api/orders", orderRoutes)
+app.use("/api/admin/orders", protect, isAdmin, adminOrderRoutes)
+app.use("/api/admin/contact-messages", protect, isAdmin, adminContactRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

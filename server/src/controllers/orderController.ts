@@ -60,6 +60,14 @@ export async function createOrder(req: Request, res: Response) {
   res.status(201).json({ url: session.url })
 }
 
+export async function listOrders(req: Request, res: Response) {
+  const orders = await OrderModel.find()
+    .populate("items.product", "name slug")
+    .populate("user", "name email")
+    .sort({ createdAt: -1 })
+  res.json({ orders })
+}
+
 export async function getOrderBySession(req: Request, res: Response) {
   const order = await OrderModel.findOne({ stripeSessionId: req.params.sessionId }).populate(
     "items.product",
