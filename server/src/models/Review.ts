@@ -10,7 +10,7 @@ const reviewSchema = new Schema(
   { timestamps: true },
 )
 
-reviewSchema.index({ product: 1 })
+reviewSchema.index({ product: 1, user: 1 }, { unique: true })
 
 export type Review = InferSchemaType<typeof reviewSchema>
 export const ReviewModel = model("Review", reviewSchema)

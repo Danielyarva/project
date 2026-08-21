@@ -19,4 +19,9 @@ export const env = {
     apiKey: required("CLOUDINARY_API_KEY"),
     apiSecret: required("CLOUDINARY_API_SECRET"),
   },
+  email: {
+    resendApiKey: required("RESEND_API_KEY"),
+    from: process.env.EMAIL_FROM ?? "onboarding@resend.dev",
+    contactNotifyTo: required("CONTACT_NOTIFY_EMAIL"),
+  },
 }

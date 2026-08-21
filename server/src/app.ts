@@ -7,6 +7,7 @@ import { isAdmin, protect } from "./middleware/auth.js"
 import { errorHandler, notFound } from "./middleware/errorHandler.js"
 import { adminProductRoutes } from "./routes/adminProductRoutes.js"
 import { authRoutes } from "./routes/authRoutes.js"
+import { contactRoutes } from "./routes/contactRoutes.js"
 import { productRoutes } from "./routes/productRoutes.js"
 
 export const app = express()
@@ -28,6 +29,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes)
 app.use("/api/products", productRoutes)
 app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
+app.use("/api/contact", contactRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

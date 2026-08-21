@@ -1,9 +1,14 @@
 import rateLimit from "express-rate-limit"
 
-export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { error: { message: "Too many attempts, please try again later." } },
-})
+function createRateLimiter(limit: number) {
+  return rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: { message: "Too many attempts, please try again later." } },
+  })
+}
+
+export const authLimiter = createRateLimiter(20)
+export const contactLimiter = createRateLimiter(5)
