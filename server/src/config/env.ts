@@ -24,4 +24,8 @@ export const env = {
     from: process.env.EMAIL_FROM ?? "onboarding@resend.dev",
     contactNotifyTo: required("CONTACT_NOTIFY_EMAIL"),
   },
+  stripe: {
+    secretKey: required("STRIPE_SECRET_KEY"),
+    webhookSecret: required("STRIPE_WEBHOOK_SECRET"),
+  },
 }

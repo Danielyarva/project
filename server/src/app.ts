@@ -8,7 +8,9 @@ import { errorHandler, notFound } from "./middleware/errorHandler.js"
 import { adminProductRoutes } from "./routes/adminProductRoutes.js"
 import { authRoutes } from "./routes/authRoutes.js"
 import { contactRoutes } from "./routes/contactRoutes.js"
+import { orderRoutes } from "./routes/orderRoutes.js"
 import { productRoutes } from "./routes/productRoutes.js"
+import { handleStripeWebhook } from "./controllers/webhookController.js"
 
 export const app = express()
 
@@ -19,6 +21,11 @@ app.use(
     credentials: true,
   }),
 )
+
+// Stripe needs the raw request body to verify the webhook signature, so this
+// is registered before the global express.json() parser below.
+app.post("/api/webhooks/stripe", express.raw({ type: "application/json" }), handleStripeWebhook)
+
 app.use(express.json())
 app.use(cookieParser())
 
@@ -30,6 +37,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/products", productRoutes)
 app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
 app.use("/api/contact", contactRoutes)
+app.use("/api/orders", orderRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

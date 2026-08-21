@@ -26,8 +26,13 @@ const shippingAddressSchema = new Schema(
 const orderSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", default: null },
+    // Backfilled from the Stripe session on webhook confirmation - guest
+    // checkouts have no User document to look an email up from otherwise.
+    customerEmail: { type: String },
     items: { type: [orderItemSchema], required: true },
-    shippingAddress: { type: shippingAddressSchema, required: true },
+    // Not required at creation: Stripe hosted Checkout collects the address,
+    // and the webhook backfills this once payment completes.
+    shippingAddress: { type: shippingAddressSchema },
     total: { type: Number, required: true },
     status: {
       type: String,
