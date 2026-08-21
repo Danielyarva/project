@@ -4,6 +4,7 @@ import { Account } from "./pages/Account"
 import { Cart } from "./pages/Cart"
 import { Contact } from "./pages/Contact"
 import { Home } from "./pages/Home"
+import { ProductDetail } from "./pages/ProductDetail"
 import { Shop } from "./pages/Shop"
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Route element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="products/:slug" element={<ProductDetail />} />
         <Route path="cart" element={<Cart />} />
         <Route path="account" element={<Account />} />
         <Route path="contact" element={<Contact />} />
