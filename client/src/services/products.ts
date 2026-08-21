@@ -8,3 +8,7 @@ export function listProducts(params?: { category?: string }) {
 
   return api.get<{ products: Product[] }>(`/products${qs ? `?${qs}` : ""}`)
 }
+
+export function getProductBySlug(slug: string) {
+  return api.get<{ product: Product; siblings: Product[] }>(`/products/${slug}`)
+}
