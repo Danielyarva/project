@@ -1,6 +1,7 @@
 import type { Request, Response } from "express"
 import { ApiError } from "../middleware/errorHandler.js"
 import { ProductModel } from "../models/Product.js"
+import { uploadProductImages as uploadImagesToCloudinary } from "../services/cloudinaryService.js"
 import { slugify } from "../utils/slugify.js"
 
 export async function listProducts(req: Request, res: Response) {
@@ -40,12 +41,37 @@ async function generateUniqueSlug(base: string): Promise<string> {
 
 export async function createProduct(req: Request, res: Response) {
   const body = req.body
+  const files = (req.files as Express.Multer.File[] | undefined) ?? []
+
+  if (files.length === 0) {
+    throw new ApiError(400, "At least one product image is required")
+  }
 
   const groupSlug = body.groupSlug ?? slugify(body.name)
   const baseSlug = body.slug ?? slugify(`${body.name}-${body.size}`)
   const slug = await generateUniqueSlug(baseSlug)
+  const images = await uploadImagesToCloudinary(files.map((file) => file.buffer))
 
-  const product = await ProductModel.create({ ...body, groupSlug, slug })
+  const product = await ProductModel.create({ ...body, groupSlug, slug, images })
+  res.status(201).json({ product })
+}
+
+export async function addProductImages(req: Request, res: Response) {
+  const files = (req.files as Express.Multer.File[] | undefined) ?? []
+  if (files.length === 0) {
+    throw new ApiError(400, "At least one image file is required")
+  }
+
+  const newImages = await uploadImagesToCloudinary(files.map((file) => file.buffer))
+
+  const product = await ProductModel.findByIdAndUpdate(
+    req.params.id,
+    { $push: { images: { $each: newImages } } },
+    { new: true },
+  )
+  if (!product) {
+    throw new ApiError(404, "Product not found")
+  }
   res.status(201).json({ product })
 }
 

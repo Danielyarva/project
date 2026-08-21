@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express"
+import { MulterError } from "multer"
 import { Error as MongooseError } from "mongoose"
 
 export class ApiError extends Error {
@@ -23,6 +24,10 @@ function toApiError(err: unknown): ApiError {
 
   if (err instanceof MongooseError.CastError) {
     return new ApiError(400, `Invalid ${err.path}: ${err.value}`)
+  }
+
+  if (err instanceof MulterError) {
+    return new ApiError(400, `Upload error: ${err.message}`)
   }
 
   if (err && typeof err === "object" && "code" in err && err.code === 11000) {
