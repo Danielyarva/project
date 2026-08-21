@@ -1,5 +1,6 @@
-import { Menu, ShoppingBag } from "lucide-react"
+import { Menu } from "lucide-react"
 import { NavLink } from "react-router-dom"
+import { CartIcon } from "../ui/CartIcon"
 
 interface MobileHeaderProps {
   onOpenMenu: () => void
@@ -17,7 +18,7 @@ export function MobileHeader({ onOpenMenu }: MobileHeaderProps) {
       </NavLink>
 
       <NavLink to="/cart" aria-label="Cart" className="text-text-primary">
-        <ShoppingBag size={20} />
+        <CartIcon />
       </NavLink>
     </header>
   )

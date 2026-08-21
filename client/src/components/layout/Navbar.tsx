@@ -1,5 +1,6 @@
-import { ShoppingBag, User } from "lucide-react"
+import { User } from "lucide-react"
 import { NavLink } from "react-router-dom"
+import { CartIcon } from "../ui/CartIcon"
 import { primaryNavLinks } from "./navLinks"
 
 export function Navbar() {
@@ -33,7 +34,7 @@ export function Navbar() {
             aria-label="Cart"
             className="text-text-primary transition-opacity hover:opacity-70"
           >
-            <ShoppingBag size={20} />
+            <CartIcon />
           </NavLink>
           <NavLink
             to="/account"

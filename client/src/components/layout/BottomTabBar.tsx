@@ -1,11 +1,11 @@
-import { Home, ShoppingBag, ShoppingCart, User } from "lucide-react"
+import { Home, ShoppingBag, User } from "lucide-react"
 import { NavLink } from "react-router-dom"
+import { CartIcon } from "../ui/CartIcon"
 import { bottomTabLinks } from "./navLinks"
 
 const icons = {
   Home: Home,
   Shop: ShoppingBag,
-  Cart: ShoppingCart,
   Account: User,
 }
 
@@ -30,7 +30,11 @@ export function BottomTabBar() {
           >
             {({ isActive }) => (
               <>
-                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                {link.label === "Cart" ? (
+                  <CartIcon size={20} />
+                ) : (
+                  <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                )}
                 {link.label}
               </>
             )}

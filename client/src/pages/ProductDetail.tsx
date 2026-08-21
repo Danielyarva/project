@@ -6,13 +6,16 @@ import { ImageGallery } from "../components/product/ImageGallery"
 import { QuantityStepper } from "../components/product/QuantityStepper"
 import { SizeChips } from "../components/product/SizeChips"
 import { ReviewsSection } from "../components/review/ReviewsSection"
+import { useCart } from "../context/CartContext"
 import { useProduct } from "../hooks/useProduct"
 import { formatPrice } from "../utils/formatPrice"
 
 export function ProductDetail() {
   const { slug } = useParams()
   const { product, siblings, loading, error } = useProduct(slug)
+  const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
+  const [justAdded, setJustAdded] = useState(false)
 
   if (loading) {
     return (
@@ -33,6 +36,23 @@ export function ProductDetail() {
   }
 
   const outOfStock = product.stock === 0
+
+  function handleAddToCart() {
+    if (!product) return
+    addItem(
+      {
+        slug: product.slug,
+        name: product.name,
+        size: product.size,
+        price: product.price,
+        image: product.images[0],
+        stock: product.stock,
+      },
+      quantity,
+    )
+    setJustAdded(true)
+    setTimeout(() => setJustAdded(false), 1500)
+  }
 
   return (
     <section className="mx-auto max-w-6xl px-4 pb-28 sm:px-6 sm:py-10 md:pb-10">
@@ -60,8 +80,9 @@ export function ProductDetail() {
           </div>
 
           <div className="mt-6 hidden md:block">
-            <Button disabled={outOfStock}>Add to Cart</Button>
-            <p className="mt-2 text-xs text-text-secondary">Cart functionality lands in Segment 10.</p>
+            <Button disabled={outOfStock} onClick={handleAddToCart}>
+              {justAdded ? "Added!" : "Add to Cart"}
+            </Button>
           </div>
         </div>
       </div>
@@ -70,7 +91,9 @@ export function ProductDetail() {
 
       <div className="fixed inset-x-0 bottom-16 z-30 flex items-center justify-between border-t border-border bg-surface px-4 py-3 md:hidden">
         <span className="text-lg font-bold">{formatPrice(product.price)}</span>
-        <Button disabled={outOfStock}>Add to Cart</Button>
+        <Button disabled={outOfStock} onClick={handleAddToCart}>
+          {justAdded ? "Added!" : "Add to Cart"}
+        </Button>
       </div>
     </section>
   )
