@@ -3,8 +3,11 @@ import cors from "cors"
 import express from "express"
 import helmet from "helmet"
 import { env } from "./config/env.js"
+import { isAdmin, protect } from "./middleware/auth.js"
 import { errorHandler, notFound } from "./middleware/errorHandler.js"
+import { adminProductRoutes } from "./routes/adminProductRoutes.js"
 import { authRoutes } from "./routes/authRoutes.js"
+import { productRoutes } from "./routes/productRoutes.js"
 
 export const app = express()
 
@@ -23,6 +26,8 @@ app.get("/api/health", (req, res) => {
 })
 
 app.use("/api/auth", authRoutes)
+app.use("/api/products", productRoutes)
+app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
