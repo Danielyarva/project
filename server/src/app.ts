@@ -16,6 +16,12 @@ import { handleStripeWebhook } from "./controllers/webhookController.js"
 
 export const app = express()
 
+// Render (and most PaaS hosts) terminate TLS at a reverse proxy in front of
+// the app. Without this, express-rate-limit keys every request off the
+// proxy's IP instead of the real client's, and secure-cookie/HTTPS checks
+// misbehave. Harmless in local dev, where there's no proxy to trust.
+app.set("trust proxy", 1)
+
 app.use(helmet())
 app.use(
   cors({
