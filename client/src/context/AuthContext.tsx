@@ -1,10 +1,13 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
-import { getMe } from "../services/auth"
+import { getMe, login as loginRequest, logout as logoutRequest, register as registerRequest } from "../services/auth"
 import type { User } from "../types/user"
 
 interface AuthContextValue {
   user: User | null
   loading: boolean
+  login: (body: { email: string; password: string }) => Promise<void>
+  register: (body: { name: string; email: string; password: string }) => Promise<void>
+  logout: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined)
@@ -20,7 +23,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setLoading(false))
   }, [])
 
-  return <AuthContext.Provider value={{ user, loading }}>{children}</AuthContext.Provider>
+  async function login(body: { email: string; password: string }) {
+    const { user } = await loginRequest(body)
+    setUser(user)
+  }
+
+  async function register(body: { name: string; email: string; password: string }) {
+    const { user } = await registerRequest(body)
+    setUser(user)
+  }
+
+  async function logout() {
+    await logoutRequest()
+    setUser(null)
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth(): AuthContextValue {

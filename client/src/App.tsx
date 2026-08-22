@@ -10,9 +10,11 @@ import { AdminProducts } from "./pages/admin/AdminProducts"
 import { Cart } from "./pages/Cart"
 import { Contact } from "./pages/Contact"
 import { Home } from "./pages/Home"
+import { Login } from "./pages/Login"
 import { NotFound } from "./pages/NotFound"
 import { OrderConfirmation } from "./pages/OrderConfirmation"
 import { ProductDetail } from "./pages/ProductDetail"
+import { Register } from "./pages/Register"
 import { Shop } from "./pages/Shop"
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="cart" element={<Cart />} />
         <Route path="order-confirmation" element={<OrderConfirmation />} />
         <Route path="account" element={<Account />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Route>

@@ -23,7 +23,7 @@ export function ReviewsSection({ slug }: { slug: string }) {
         {!authLoading && user && <ReviewForm slug={slug} onSubmitted={refetch} />}
         {!authLoading && !user && (
           <p className="text-sm text-text-secondary">
-            <NavLink to="/account" className="font-semibold text-text-primary underline">
+            <NavLink to="/login" className="font-semibold text-text-primary underline">
               Log in
             </NavLink>{" "}
             to leave a review.
