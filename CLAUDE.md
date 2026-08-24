@@ -75,6 +75,8 @@ Product (each size is its own document, linked to siblings via groupSlug):
   groupSlug: String, required   (shared across sizes of the same product — used for "also available in...")
   avgRating: Number, default 0
   numReviews: Number, default 0
+  featured: Boolean, default false   (manually curated flag for the Best Sellers section)
+  compareAtPrice: Number, optional   (pre-discount price; when set and greater than price, displays as discounted)
   timestamps: true
 ```
 
@@ -198,3 +200,55 @@ POST   /api/auth/login
 15. Polish: loading/error states, responsive pass, SEO meta tags
 16. Deploy + set up CI
 17. Soft launch with real orders before wider release
+
+# Redesign & Expansion Phase (Segments 16–20)
+
+Visual direction is changing from the original monochrome UI-kit theme to a warm/earthy
+theme, and scope is expanding with three new pages. The workflow rules (wait for
+"start," pause at checkpoints, never auto-continue, update "Current segment" on
+completion) apply here exactly as before.
+
+## Schema addition
+Add to Product in the Data Models section above:
+- featured: Boolean, default false — manually curated flag for the Best Sellers section
+- compareAtPrice: Number, optional — pre-discount price; when set and greater than
+  price, the product displays as discounted
+
+(Already merged into the Product model documented above.)
+
+## Segment 16 — Design System Redesign
+Reference: `./design/reference-v2.png` (cream background, terracotta/orange accents,
+real product photography, branded wordmark — "StoneCraft" in the reference) —
+replacing the current monochrome direction. Discuss this in detail before touching any
+code, same process as Segment 1: describe what's changing versus the current
+DESIGN.md, ask clarifying questions, then propose updated tokens — colors (hex),
+typography including a wordmark/logo treatment, button style, card style, trust-badge
+style, and discounted-price display (strikethrough + % off badge). No component code
+yet. Once agreed, overwrite DESIGN.md with the new system.
+
+## Segment 17 — Restyle Existing Pages
+Using the updated DESIGN.md, restyle every existing page and component (Home, Shop,
+Product Detail, Cart, Login, Register, Account, Contact, Order Confirmation, 404,
+Admin Dashboard) to match. Visual changes only — no functional changes. Check each
+page against DESIGN.md before moving to the next.
+
+## Segment 18 — Featured + Discount Pricing
+Add featured and compareAtPrice to the Product schema (see above). Update the admin
+product form to set both. Update product cards and the product detail page to show a
+strikethrough compareAtPrice plus a computed % off badge whenever compareAtPrice is
+set and higher than price. Before building this segment: confirm the payment
+currency — if pricing is in INR, confirm Stripe is properly configured for INR, or
+flag that a processor with better India support (Razorpay/Cashfree) may be needed
+instead. Pricing display and payment currency must match.
+
+## Segment 19 — Home: Trust Badges + Best Sellers
+Add a trust badge row to the Home page (icon + label — e.g. Handmade, Natural
+Materials, Food Safe, Made with Love, adjusted as fits). Add a Best Sellers section
+querying products where featured is true, styled per DESIGN.md.
+
+## Segment 20 — About Us, Our Story, Shipping & Returns
+Build three new static pages: About Us, Our Story (narrative + photo), and Shipping &
+Returns (policy info). Add routes and link all three from the nav/hamburger menu and
+footer. Use placeholder copy, clearly flagged as needing real content before launch.
+Only add footer social icons if real social accounts exist — omit them rather than
+link to nothing.
