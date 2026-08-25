@@ -283,3 +283,27 @@ Returns (policy info). Add routes and link all three from the nav/hamburger menu
 footer. Use placeholder copy, clearly flagged as needing real content before launch.
 Only add footer social icons if real social accounts exist — omit them rather than
 link to nothing.
+
+## Segment 21 — Mobile Install (PWA) + Cart Persistence
+Make the site installable on mobile as a PWA, and persist the cart client-side.
+
+PWA:
+- Add a web app manifest (name, short_name, icons, theme_color, background_color
+  matching DESIGN.md, display: "standalone", start_url)
+- Add app icons at minimum 192x192 and 512x512 — if no real logo asset exists yet,
+  generate a simple placeholder based on the DESIGN.md wordmark/mark and flag that it
+  should be replaced with a real icon before launch
+- Add a basic service worker that caches static assets for faster repeat loads — keep
+  it minimal, not full offline-first
+- Register the service worker in the app entry point
+- Add required meta tags in index.html: manifest link, theme-color, apple-touch-icon,
+  apple-mobile-web-app-capable (for iOS Add to Home Screen support)
+
+Cart persistence:
+- Persist the guest cart (items, quantities) in localStorage so it survives closing
+  and reopening the browser/app
+- On login, merge the localStorage cart into the user's server-side cart rather than
+  discarding either
+
+Do NOT change how auth is stored. JWT stays in an httpOnly cookie exactly as already
+implemented — this segment does not touch auth in any way.
