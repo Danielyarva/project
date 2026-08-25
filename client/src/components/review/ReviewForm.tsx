@@ -54,7 +54,7 @@ export function ReviewForm({ slug, onSubmitted }: ReviewFormProps) {
                 size={24}
                 className={
                   value <= (hoverRating || rating)
-                    ? "fill-text-primary text-text-primary"
+                    ? "fill-star text-star"
                     : "text-border"
                 }
               />

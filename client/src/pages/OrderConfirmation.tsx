@@ -48,7 +48,7 @@ export function OrderConfirmation() {
   if (error || !order) {
     return (
       <section className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6">
-        <h1 className="text-2xl font-bold">We couldn't find that order</h1>
+        <h1 className="font-serif text-3xl font-bold">We couldn't find that order</h1>
         <p className="mt-2 text-text-secondary">{error}</p>
         <NavLink to="/shop" className="mt-6 inline-block">
           <Button>Continue Shopping</Button>
@@ -61,14 +61,14 @@ export function OrderConfirmation() {
     <section className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
       {order.status === "pending" ? (
         <>
-          <h1 className="text-2xl font-bold">Confirming your payment...</h1>
+          <h1 className="font-serif text-3xl font-bold">Confirming your payment...</h1>
           <p className="mt-2 text-text-secondary">
             This usually only takes a few seconds. Refresh this page shortly if it doesn't update.
           </p>
         </>
       ) : (
         <>
-          <h1 className="text-2xl font-bold">Thank you for your order!</h1>
+          <h1 className="font-serif text-3xl font-bold">Thank you for your order!</h1>
           <p className="mt-2 text-text-secondary">
             A confirmation email is on its way. Order #{order._id.slice(-8)}
           </p>

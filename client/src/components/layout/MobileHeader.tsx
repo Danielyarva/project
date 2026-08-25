@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { CartIcon } from "../ui/CartIcon"
+import { Logo } from "./Logo"
 
 interface MobileHeaderProps {
   onOpenMenu: () => void
@@ -13,8 +14,8 @@ export function MobileHeader({ onOpenMenu }: MobileHeaderProps) {
         <Menu size={22} />
       </button>
 
-      <NavLink to="/" className="text-base font-bold tracking-tight">
-        Mortar &amp; Pestle Co.
+      <NavLink to="/" aria-label="StoneCraft home">
+        <Logo iconClassName="h-5 w-5" wordmarkClassName="text-base" />
       </NavLink>
 
       <NavLink to="/cart" aria-label="Cart" className="text-text-primary">

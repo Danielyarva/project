@@ -37,7 +37,7 @@ export function Login() {
 
   return (
     <section className="mx-auto max-w-sm px-4 py-16 sm:px-6">
-      <h1 className="text-2xl font-bold">Log In</h1>
+      <h1 className="font-serif text-3xl font-bold">Log In</h1>
 
       <Card className="mt-6 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">

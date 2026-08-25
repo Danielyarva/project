@@ -13,7 +13,7 @@ export function StarRating({ rating, numReviews, size = 14 }: StarRatingProps) {
 
   return (
     <div className="flex items-center gap-1 text-text-secondary">
-      <Star size={size} className="fill-text-primary text-text-primary" />
+      <Star size={size} className="fill-star text-star" />
       <span className="text-xs font-semibold text-text-primary">{rating.toFixed(1)}</span>
       {typeof numReviews === "number" && <span className="text-xs">({numReviews})</span>}
     </div>

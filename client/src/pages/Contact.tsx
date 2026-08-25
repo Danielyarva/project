@@ -7,7 +7,7 @@ import { sendContactMessage } from "../services/contact"
 export function Contact() {
   useSeo({
     title: "Contact Us",
-    description: "Questions about an order or a custom piece? Get in touch with Mortar & Pestle Co.",
+    description: "Questions about an order or a custom piece? Get in touch with StoneCraft.",
   })
 
   const [name, setName] = useState("")
@@ -39,7 +39,7 @@ export function Contact() {
   if (submitted) {
     return (
       <section className="mx-auto max-w-xl px-4 py-16 text-center sm:px-6">
-        <h1 className="text-2xl font-bold">Message sent</h1>
+        <h1 className="font-serif text-3xl font-bold">Message sent</h1>
         <p className="mt-2 text-text-secondary">
           Thanks for reaching out — we'll get back to you soon.
         </p>
@@ -49,7 +49,7 @@ export function Contact() {
 
   return (
     <section className="mx-auto max-w-xl px-4 py-16 sm:px-6">
-      <h1 className="text-2xl font-bold">Contact Us</h1>
+      <h1 className="font-serif text-3xl font-bold">Contact Us</h1>
       <p className="mt-2 text-text-secondary">
         Questions about an order, a custom piece, or anything else — send us a message.
       </p>
@@ -65,7 +65,7 @@ export function Contact() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-2xl border border-border bg-surface p-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="input"
           />
         </div>
 
@@ -79,7 +79,7 @@ export function Contact() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-2xl border border-border bg-surface p-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="input"
           />
         </div>
 
@@ -95,7 +95,7 @@ export function Contact() {
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full rounded-2xl border border-border bg-surface p-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="input"
           />
         </div>
 

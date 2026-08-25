@@ -1,14 +1,15 @@
 import { User } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { CartIcon } from "../ui/CartIcon"
+import { Logo } from "./Logo"
 import { primaryNavLinks } from "./navLinks"
 
 export function Navbar() {
   return (
     <header className="hidden border-b border-border bg-surface md:block">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <NavLink to="/" className="text-lg font-bold tracking-tight">
-          Mortar &amp; Pestle Co.
+        <NavLink to="/" aria-label="StoneCraft home">
+          <Logo showTagline />
         </NavLink>
 
         <nav className="flex items-center gap-8">

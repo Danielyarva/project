@@ -30,7 +30,7 @@ export function Shop() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-      <h1 className="mb-4 text-2xl font-bold">Shop</h1>
+      <h1 className="mb-4 font-serif text-3xl font-bold">Shop All Products</h1>
 
       <SearchInput
         placeholder="Search products..."

@@ -8,7 +8,7 @@ interface SeoOptions {
   noIndex?: boolean
 }
 
-const SITE_NAME = "Mortar & Pestle Co."
+const SITE_NAME = "StoneCraft"
 const DEFAULT_IMAGE = "/favicon.svg"
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {

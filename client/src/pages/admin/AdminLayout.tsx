@@ -15,7 +15,7 @@ export function AdminLayout() {
       <header className="border-b border-border bg-surface px-4 py-4 sm:px-8">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <NavLink to="/" className="text-sm font-bold">
-            Mortar &amp; Pestle Co. — Admin
+            StoneCraft — Admin
           </NavLink>
           <NavLink to="/" className="text-xs font-semibold text-text-secondary hover:text-text-primary">
             Exit Admin

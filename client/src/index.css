@@ -1,23 +1,28 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: "Inter Variable", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
 
-  --color-bg: #fafafa;
+  --color-bg: #fbf6ef;
   --color-surface: #ffffff;
-  --color-text-primary: #111111;
-  --color-text-secondary: #6b6b6b;
-  --color-border: #e5e5e5;
-  --color-accent: #000000;
+  --color-text-primary: #2b2118;
+  --color-text-secondary: #8a7a6b;
+  --color-border: #e8dfd2;
+  --color-accent: #c1592f;
   --color-accent-text: #ffffff;
   --color-danger: #dc2626;
+  --color-star: #c1592f;
+  --color-whatsapp: #25d366;
+  --color-discount: #b8860b;
 
   --radius-card: 1.25rem;
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 1px 2px rgba(43, 33, 24, 0.06), 0 4px 14px rgba(43, 33, 24, 0.08);
 }
 
 :root {
@@ -26,14 +31,17 @@
 
 .dark {
   color-scheme: dark;
-  --color-bg: #0a0a0a;
-  --color-surface: #171717;
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a3a3a3;
-  --color-border: #2a2a2a;
-  --color-accent: #ffffff;
-  --color-accent-text: #000000;
+  --color-bg: #1c1712;
+  --color-surface: #2a231c;
+  --color-text-primary: #f5ede3;
+  --color-text-secondary: #b8a992;
+  --color-border: #3d342a;
+  --color-accent: #e08a5b;
+  --color-accent-text: #1c1712;
   --color-danger: #ef4444;
+  --color-star: #e08a5b;
+  --color-whatsapp: #25d366;
+  --color-discount: #d9a93a;
 }
 
 body {

@@ -1,6 +1,7 @@
 import { X } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { ThemeToggle } from "../ui/ThemeToggle"
+import { Logo } from "./Logo"
 import { primaryNavLinks } from "./navLinks"
 
 interface HamburgerDrawerProps {
@@ -26,7 +27,7 @@ export function HamburgerDrawer({ open, onClose }: HamburgerDrawerProps) {
         }`}
       >
         <div className="mb-6 flex items-center justify-between">
-          <span className="text-lg font-bold">Menu</span>
+          <Logo iconClassName="h-5 w-5" wordmarkClassName="text-base" />
           <button
             type="button"
             onClick={onClose}

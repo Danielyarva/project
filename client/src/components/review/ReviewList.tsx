@@ -27,7 +27,7 @@ export function ReviewList({ reviews }: { reviews: Review[] }) {
                   size={13}
                   className={
                     i < review.rating
-                      ? "fill-text-primary text-text-primary"
+                      ? "fill-star text-star"
                       : "text-border"
                   }
                 />

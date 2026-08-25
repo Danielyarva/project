@@ -12,7 +12,7 @@ export function Account() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="text-2xl font-bold">Account</h1>
+      <h1 className="font-serif text-3xl font-bold">Account</h1>
 
       {!loading && !user && (
         <Card className="mt-6 max-w-sm p-6">

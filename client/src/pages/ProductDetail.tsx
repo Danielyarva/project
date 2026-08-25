@@ -95,7 +95,7 @@ export function ProductDetail() {
         <ImageGallery images={product.images} alt={product.name} />
 
         <div>
-          <h1 className="text-2xl font-bold">{product.name}</h1>
+          <h1 className="font-serif text-3xl font-bold">{product.name}</h1>
           <div className="mt-2">
             <StarRating rating={product.avgRating} numReviews={product.numReviews} />
           </div>

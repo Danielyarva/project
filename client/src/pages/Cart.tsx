@@ -31,7 +31,7 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <section className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
-        <h1 className="text-2xl font-bold">Cart</h1>
+        <h1 className="font-serif text-3xl font-bold">Cart</h1>
         <p className="mt-2 text-text-secondary">Your cart is empty.</p>
         <NavLink to="/shop" className="mt-6 inline-block">
           <Button>Browse the Shop</Button>
@@ -42,7 +42,7 @@ export function Cart() {
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-      <h1 className="text-2xl font-bold">Cart</h1>
+      <h1 className="font-serif text-3xl font-bold">Cart</h1>
 
       <div className="mt-6 divide-y divide-border">
         {items.map((item) => (

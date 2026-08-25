@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
         />
       </div>
       <div className="mt-3 space-y-1">
-        <h3 className="truncate text-sm font-semibold">{product.name}</h3>
+        <h3 className="truncate font-serif text-base font-semibold">{product.name}</h3>
         <StarRating rating={product.avgRating} numReviews={product.numReviews} />
         <p className="text-sm font-bold">{formatPrice(product.price)}</p>
       </div>
