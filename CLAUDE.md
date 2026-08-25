@@ -159,6 +159,8 @@ POST   /api/webhooks/stripe               Stripe webhook, confirms payment
 POST   /api/contact                       public
 POST   /api/auth/register
 POST   /api/auth/login
+GET    /api/wishlist                      protect — current user's wishlisted products
+POST   /api/wishlist/:productId           protect — toggles a product in/out of the wishlist
 ```
 
 ## Security Requirements

@@ -42,12 +42,12 @@ export async function createOrder(req: Request, res: Response) {
     line_items: orderItems.map((item) => ({
       quantity: item.quantity,
       price_data: {
-        currency: "usd",
+        currency: "inr",
         unit_amount: Math.round(item.price * 100),
         product_data: { name: `${item.name} (${item.size})` },
       },
     })),
-    shipping_address_collection: { allowed_countries: ["US", "CA"] },
+    shipping_address_collection: { allowed_countries: ["IN"] },
     customer_email: req.user?.email,
     success_url: `${env.clientUrl}/order-confirmation?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${env.clientUrl}/cart`,

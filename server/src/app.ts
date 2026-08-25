@@ -12,6 +12,7 @@ import { authRoutes } from "./routes/authRoutes.js"
 import { contactRoutes } from "./routes/contactRoutes.js"
 import { orderRoutes } from "./routes/orderRoutes.js"
 import { productRoutes } from "./routes/productRoutes.js"
+import { wishlistRoutes } from "./routes/wishlistRoutes.js"
 import { handleStripeWebhook } from "./controllers/webhookController.js"
 
 export const app = express()
@@ -46,6 +47,7 @@ app.use("/api/products", productRoutes)
 app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
 app.use("/api/contact", contactRoutes)
 app.use("/api/orders", orderRoutes)
+app.use("/api/wishlist", wishlistRoutes)
 app.use("/api/admin/orders", protect, isAdmin, adminOrderRoutes)
 app.use("/api/admin/contact-messages", protect, isAdmin, adminContactRoutes)
 

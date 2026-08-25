@@ -14,6 +14,8 @@ const productSchema = new Schema(
     groupSlug: { type: String, required: true },
     avgRating: { type: Number, default: 0 },
     numReviews: { type: Number, default: 0 },
+    featured: { type: Boolean, default: false },
+    compareAtPrice: { type: Number },
   },
   { timestamps: true },
 )

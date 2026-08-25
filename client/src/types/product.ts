@@ -12,6 +12,8 @@ export interface Product {
   groupSlug: string
   avgRating: number
   numReviews: number
+  featured: boolean
+  compareAtPrice?: number
   createdAt: string
   updatedAt: string
 }

@@ -11,6 +11,8 @@ export interface ProductFormFields {
   size: string
   price: number
   stock: number
+  compareAtPrice?: number
+  featured: boolean
 }
 
 export function adminCreateProduct(fields: ProductFormFields, images: File[]) {

@@ -119,6 +119,29 @@ describe("POST /api/admin/products", () => {
     )
   })
 
+  it("coerces featured and compareAtPrice from multipart form fields", async () => {
+    jest.spyOn(UserModel, "findById").mockReturnValue(mockQueryChain({ id: "admin1", role: "admin" }) as never)
+    jest.spyOn(ProductModel, "exists").mockResolvedValue(null as never)
+    const createSpy = jest
+      .spyOn(ProductModel, "create")
+      .mockResolvedValue({ _id: "p1", slug: "granite-mortar-large" } as never)
+
+    const res = await request(app)
+      .post("/api/admin/products")
+      .set("Cookie", `token=${adminToken}`)
+      .field("name", "Granite Mortar")
+      .field("size", "Large")
+      .field("price", "899")
+      .field("compareAtPrice", "1199")
+      .field("featured", "true")
+      .attach("images", Buffer.from("fake-image"), "test.jpg")
+
+    expect(res.status).toBe(201)
+    expect(createSpy).toHaveBeenCalledWith(
+      expect.objectContaining({ price: 899, compareAtPrice: 1199, featured: true }),
+    )
+  })
+
   it("appends a numeric suffix when the slug already exists", async () => {
     jest.spyOn(UserModel, "findById").mockReturnValue(mockQueryChain({ id: "admin1", role: "admin" }) as never)
     jest

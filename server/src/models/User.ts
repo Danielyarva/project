@@ -7,6 +7,7 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" },
     themePreference: { type: String, enum: ["light", "dark"] },
+    wishlist: { type: [Schema.Types.ObjectId], ref: "Product", default: [] },
   },
   { timestamps: true },
 )

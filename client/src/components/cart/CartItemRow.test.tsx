@@ -57,7 +57,7 @@ describe("CartItemRow", () => {
     renderHarness()
     expect(screen.getByText("Granite Mortar")).toBeInTheDocument()
     expect(screen.getByText("Size: Large")).toBeInTheDocument()
-    expect(screen.getByText("$136.00")).toBeInTheDocument() // 68 * 2
+    expect(screen.getByText("₹136")).toBeInTheDocument() // 68 * 2
   })
 
   it("increasing quantity updates the line total", async () => {
@@ -66,7 +66,7 @@ describe("CartItemRow", () => {
 
     await user.click(screen.getByLabelText("Increase quantity"))
 
-    expect(screen.getByText("$204.00")).toBeInTheDocument() // 68 * 3
+    expect(screen.getByText("₹204")).toBeInTheDocument() // 68 * 3
   })
 
   it("clicking remove opens a confirmation dialog and does not remove until confirmed", async () => {

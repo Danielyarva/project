@@ -18,6 +18,8 @@ const emptyFields: ProductFormFields = {
   size: "",
   price: 0,
   stock: 0,
+  compareAtPrice: undefined,
+  featured: false,
 }
 
 export function AdminProductForm() {
@@ -49,6 +51,8 @@ export function AdminProductForm() {
           size: product.size,
           price: product.price,
           stock: product.stock,
+          compareAtPrice: product.compareAtPrice,
+          featured: product.featured,
         })
         setExistingImages(product.images)
       })
@@ -121,7 +125,7 @@ export function AdminProductForm() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Price ($)">
+          <Field label="Price (₹)">
             <input
               type="number"
               min="0"
@@ -143,6 +147,31 @@ export function AdminProductForm() {
               className="input"
             />
           </Field>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Compare-at price (₹)">
+            <input
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="Optional"
+              value={fields.compareAtPrice ?? ""}
+              onChange={(e) =>
+                updateField("compareAtPrice", e.target.value === "" ? undefined : Number(e.target.value))
+              }
+              className="input"
+            />
+          </Field>
+          <label className="flex items-center gap-2 self-end pb-3">
+            <input
+              type="checkbox"
+              checked={fields.featured}
+              onChange={(e) => updateField("featured", e.target.checked)}
+              className="h-4 w-4 accent-accent"
+            />
+            <span className="text-sm font-semibold">Featured (Best Sellers)</span>
+          </label>
         </div>
 
         <Field label="Material">

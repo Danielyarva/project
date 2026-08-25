@@ -13,6 +13,8 @@ export const createProductSchema = z.object({
   stock: z.number().int().nonnegative().default(0),
   images: z.array(z.string().url("Each image must be a valid URL")).min(1, "At least one image is required"),
   groupSlug: z.string().trim().toLowerCase().regex(slugPattern, "Invalid groupSlug format").optional(),
+  featured: z.boolean().optional().default(false),
+  compareAtPrice: z.number().positive("Compare-at price must be greater than 0").optional(),
 })
 
 export const updateProductSchema = createProductSchema.partial()
@@ -29,6 +31,11 @@ export const createProductFormSchema = z.object({
   price: z.coerce.number().positive("Price must be greater than 0"),
   stock: z.coerce.number().int().nonnegative().default(0),
   groupSlug: z.string().trim().toLowerCase().regex(slugPattern, "Invalid groupSlug format").optional(),
+  featured: z
+    .string()
+    .optional()
+    .transform((v) => v === "true"),
+  compareAtPrice: z.coerce.number().positive("Compare-at price must be greater than 0").optional(),
 })
 
 export const productIdParamSchema = z.object({

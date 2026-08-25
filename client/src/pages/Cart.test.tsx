@@ -60,7 +60,7 @@ describe("Cart page", () => {
     expect(screen.getByText("Granite Mortar")).toBeInTheDocument()
     expect(screen.getByText("Marble Mortar")).toBeInTheDocument()
     // Subtotal (68*2 + 34*1 = 170) is distinct from either line total, so this is unambiguous.
-    expect(screen.getByText("$170.00")).toBeInTheDocument()
+    expect(screen.getByText("₹170")).toBeInTheDocument()
   })
 
   it("clicking Checkout sends the cart contents and redirects to the returned URL", async () => {

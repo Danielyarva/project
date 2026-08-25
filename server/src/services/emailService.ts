@@ -24,13 +24,13 @@ export async function sendOrderReceipt(params: {
   total: number
 }): Promise<void> {
   const lines = params.items
-    .map((item) => `  ${item.quantity} x ${item.productName} (${item.size}) - $${item.price.toFixed(2)}`)
+    .map((item) => `  ${item.quantity} x ${item.productName} (${item.size}) - ₹${item.price.toFixed(2)}`)
     .join("\n")
 
   await resend.emails.send({
     from: env.email.from,
     to: params.to,
     subject: `Order confirmed - #${params.orderId.slice(-8)}`,
-    text: `Thanks for your order!\n\n${lines}\n\nTotal: $${params.total.toFixed(2)}\n\nOrder #${params.orderId}`,
+    text: `Thanks for your order!\n\n${lines}\n\nTotal: ₹${params.total.toFixed(2)}\n\nOrder #${params.orderId}`,
   })
 }
