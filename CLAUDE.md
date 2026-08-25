@@ -226,6 +226,35 @@ typography including a wordmark/logo treatment, button style, card style, trust-
 style, and discounted-price display (strikethrough + % off badge). No component code
 yet. Once agreed, overwrite DESIGN.md with the new system.
 
+### Segment 16 — Decisions (resolved)
+- **Brand name: StoneCraft** — replaces "Mortar & Pestle Co." site-wide.
+- **Currency: INR via Stripe.** Stripe stays the card-payment processor, priced in INR
+  (not a switch to Razorpay/Cashfree).
+- **WhatsApp ordering added alongside Stripe** (not a replacement). Cart page gets a
+  second CTA, "Order via WhatsApp" (WhatsApp-brand-green button, the one intentional
+  exception to the terracotta palette). On click: create an `Order` from the current
+  cart with `status: 'pending'` and no `stripeSessionId`, then redirect to a `wa.me`
+  deep link with items/sizes/quantities/total pre-filled as the message — so it's
+  visible in `/admin/orders`. Requires a real business WhatsApp number before launch
+  (`WHATSAPP_NUMBER` env var, placeholder until supplied).
+- **Checkout stays Stripe hosted Checkout** — no custom multi-step flow, despite the
+  reference mockup showing one.
+- **Typography: two-font system** — Fraunces (serif) for the wordmark, headings, and
+  product titles; Inter (sans, unchanged) for body/UI/buttons/prices/admin. This
+  overrides Segment 1's original "no serif anywhere" rule.
+- **Wishlist added** (scope addition beyond the original Segment 16–20 list, requested
+  mid-Segment-16): heart icon on product cards, requires login, no dedicated
+  "saved items" page scheduled yet — build the toggle + persistence only, revisit a
+  full wishlist view later if requested.
+- **Buy Now button added** to product detail, alongside Add to Cart (outline style,
+  skips cart, goes straight to checkout).
+- **Bottom tab bar composition unchanged**: Home, Shop, Cart, Account. New Segment 20
+  pages (About Us, Our Story, Shipping & Returns) live in the hamburger drawer and
+  footer only.
+
+Full token values (colors, exact typography setup, component specs) are in DESIGN.md,
+not duplicated here.
+
 ## Segment 17 — Restyle Existing Pages
 Using the updated DESIGN.md, restyle every existing page and component (Home, Shop,
 Product Detail, Cart, Login, Register, Account, Contact, Order Confirmation, 404,
