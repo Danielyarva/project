@@ -7,14 +7,17 @@ import { AdminLayout } from "./pages/admin/AdminLayout"
 import { AdminOrders } from "./pages/admin/AdminOrders"
 import { AdminProductForm } from "./pages/admin/AdminProductForm"
 import { AdminProducts } from "./pages/admin/AdminProducts"
+import { AboutUs } from "./pages/AboutUs"
 import { Cart } from "./pages/Cart"
 import { Contact } from "./pages/Contact"
 import { Home } from "./pages/Home"
 import { Login } from "./pages/Login"
 import { NotFound } from "./pages/NotFound"
 import { OrderConfirmation } from "./pages/OrderConfirmation"
+import { OurStory } from "./pages/OurStory"
 import { ProductDetail } from "./pages/ProductDetail"
 import { Register } from "./pages/Register"
+import { ShippingReturns } from "./pages/ShippingReturns"
 import { Shop } from "./pages/Shop"
 
 function App() {
@@ -30,6 +33,9 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="our-story" element={<OurStory />} />
+        <Route path="shipping-returns" element={<ShippingReturns />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

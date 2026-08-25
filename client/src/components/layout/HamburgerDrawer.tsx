@@ -2,7 +2,7 @@ import { X } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { ThemeToggle } from "../ui/ThemeToggle"
 import { Logo } from "./Logo"
-import { primaryNavLinks } from "./navLinks"
+import { primaryNavLinks, secondaryNavLinks } from "./navLinks"
 
 interface HamburgerDrawerProps {
   open: boolean
@@ -53,6 +53,23 @@ export function HamburgerDrawer({ open, onClose }: HamburgerDrawerProps) {
             </NavLink>
           ))}
         </nav>
+
+        <div className="mt-6 border-t border-border pt-4">
+          <nav className="flex flex-col gap-3">
+            {secondaryNavLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `text-sm font-semibold ${isActive ? "text-text-primary" : "text-text-secondary"}`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
 
         <div className="mt-auto pt-6">
           <p className="mb-2 text-xs font-semibold text-text-secondary">Appearance</p>

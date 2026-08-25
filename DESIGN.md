@@ -155,8 +155,10 @@ bottom on mobile, centered modal on desktop.
 - Top bar: logo/wordmark left, search icon, cart icon right.
 
 **Desktop**:
-- Full horizontal nav bar: logo left, primary links center (Shop, About Us, Our Story,
-  Shipping & Returns, Contact), search + cart + account icons right.
+- Full horizontal nav bar: logo left, primary links center (Home, Shop, Contact — kept
+  short so the bar doesn't get crowded), search + cart + account icons right. About Us,
+  Our Story, and Shipping & Returns are reached via the footer at desktop width, and via
+  the footer or hamburger drawer on mobile — there's no desktop hamburger menu.
 - No bottom tab bar; account dropdown includes Settings (theme toggle), Orders, Logout.
 
 **Footer** (all breakpoints, expanded from v1): logo lockup + tagline + short blurb,
