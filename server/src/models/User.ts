@@ -8,6 +8,15 @@ const userSchema = new Schema(
     role: { type: String, enum: ["user", "admin"], default: "user" },
     themePreference: { type: String, enum: ["light", "dark"] },
     wishlist: { type: [Schema.Types.ObjectId], ref: "Product", default: [] },
+    cart: {
+      type: [
+        {
+          product: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+          quantity: { type: Number, required: true },
+        },
+      ],
+      default: [],
+    },
   },
   { timestamps: true },
 )

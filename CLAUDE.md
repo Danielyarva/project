@@ -59,6 +59,8 @@ User:
   email: String, required, unique
   password: String  (bcrypt hashed)
   role: String, enum ['user','admin'], default 'user'
+  wishlist: [ObjectId ref Product], default []   (Segment 16 addition)
+  cart: [{ product: ObjectId ref Product, quantity: Number }], default []   (Segment 21 addition — server-side cart, merged with the localStorage guest cart on login)
 ```
 
 Product (each size is its own document, linked to siblings via groupSlug):
@@ -161,6 +163,8 @@ POST   /api/auth/register
 POST   /api/auth/login
 GET    /api/wishlist                      protect — current user's wishlisted products
 POST   /api/wishlist/:productId           protect — toggles a product in/out of the wishlist
+PUT    /api/cart                          protect — overwrites the user's server-side cart
+POST   /api/cart/merge                    protect — merges given items into the server-side cart (used on login)
 ```
 
 ## Security Requirements

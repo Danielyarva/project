@@ -9,6 +9,7 @@ import { adminContactRoutes } from "./routes/adminContactRoutes.js"
 import { adminOrderRoutes } from "./routes/adminOrderRoutes.js"
 import { adminProductRoutes } from "./routes/adminProductRoutes.js"
 import { authRoutes } from "./routes/authRoutes.js"
+import { cartRoutes } from "./routes/cartRoutes.js"
 import { contactRoutes } from "./routes/contactRoutes.js"
 import { orderRoutes } from "./routes/orderRoutes.js"
 import { productRoutes } from "./routes/productRoutes.js"
@@ -48,6 +49,7 @@ app.use("/api/admin/products", protect, isAdmin, adminProductRoutes)
 app.use("/api/contact", contactRoutes)
 app.use("/api/orders", orderRoutes)
 app.use("/api/wishlist", wishlistRoutes)
+app.use("/api/cart", cartRoutes)
 app.use("/api/admin/orders", protect, isAdmin, adminOrderRoutes)
 app.use("/api/admin/contact-messages", protect, isAdmin, adminContactRoutes)
 
