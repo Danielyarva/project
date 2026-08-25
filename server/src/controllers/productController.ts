@@ -5,11 +5,12 @@ import { uploadProductImages as uploadImagesToCloudinary } from "../services/clo
 import { slugify } from "../utils/slugify.js"
 
 export async function listProducts(req: Request, res: Response) {
-  const { groupSlug, category } = req.query
+  const { groupSlug, category, featured } = req.query
 
   const filter: Record<string, unknown> = {}
   if (typeof groupSlug === "string") filter.groupSlug = groupSlug
   if (typeof category === "string") filter.category = category
+  if (featured === "true") filter.featured = true
 
   const products = await ProductModel.find(filter).sort({ createdAt: -1 })
   res.json({ products })

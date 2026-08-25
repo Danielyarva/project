@@ -145,7 +145,7 @@ Default is Stripe's hosted Checkout (redirect) for MVP — far less to build and
 
 ## API Routes
 ```
-GET    /api/products                      public (supports ?groupSlug=)
+GET    /api/products                      public (supports ?groupSlug=, ?category=, ?featured=true)
 GET    /api/products/:slug                public
 GET    /api/products/:slug/reviews        public
 POST   /api/products/:slug/reviews        protect

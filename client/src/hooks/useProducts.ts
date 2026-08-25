@@ -8,7 +8,12 @@ interface UseProductsResult {
   error: string | null
 }
 
-export function useProducts(category?: string): UseProductsResult {
+interface UseProductsParams {
+  category?: string
+  featured?: boolean
+}
+
+export function useProducts({ category, featured }: UseProductsParams = {}): UseProductsResult {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -19,7 +24,7 @@ export function useProducts(category?: string): UseProductsResult {
     setLoading(true)
     setError(null)
 
-    listProducts({ category })
+    listProducts({ category, featured })
       .then(({ products }) => {
         if (!cancelled) setProducts(products)
       })
@@ -33,7 +38,7 @@ export function useProducts(category?: string): UseProductsResult {
     return () => {
       cancelled = true
     }
-  }, [category])
+  }, [category, featured])
 
   return { products, loading, error }
 }

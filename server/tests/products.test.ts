@@ -27,6 +27,16 @@ describe("GET /api/products", () => {
     expect(res.status).toBe(200)
     expect(res.body.products).toHaveLength(1)
   })
+
+  it("filters by featured=true", async () => {
+    const findSpy = jest
+      .spyOn(ProductModel, "find")
+      .mockReturnValue(mockQueryChain([{ _id: "p1", name: "A", featured: true }]) as never)
+
+    const res = await request(app).get("/api/products?featured=true")
+    expect(res.status).toBe(200)
+    expect(findSpy).toHaveBeenCalledWith(expect.objectContaining({ featured: true }))
+  })
 })
 
 describe("GET /api/products/:slug", () => {
