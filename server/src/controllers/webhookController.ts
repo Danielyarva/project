@@ -57,6 +57,10 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 }
 
 export async function handleStripeWebhook(req: Request, res: Response) {
+  if (!stripe || !env.stripe.webhookSecret) {
+    throw new ApiError(503, "Checkout is not configured yet")
+  }
+
   const signature = req.headers["stripe-signature"]
   if (!signature || typeof signature !== "string") {
     throw new ApiError(400, "Missing Stripe signature")

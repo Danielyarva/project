@@ -6,6 +6,10 @@ import { OrderModel } from "../models/Order.js"
 import { ProductModel } from "../models/Product.js"
 
 export async function createOrder(req: Request, res: Response) {
+  if (!stripe) {
+    throw new ApiError(503, "Checkout is not configured yet")
+  }
+
   const { items } = req.body as { items: { slug: string; quantity: number }[] }
 
   const products = await ProductModel.find({ slug: { $in: items.map((i) => i.slug) } })

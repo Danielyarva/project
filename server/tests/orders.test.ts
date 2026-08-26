@@ -25,7 +25,7 @@ describe("POST /api/orders", () => {
     jest.spyOn(OrderModel, "create").mockResolvedValue(fakeOrder as never)
 
     const createSessionSpy = jest
-      .spyOn(stripe.checkout.sessions, "create")
+      .spyOn(stripe!.checkout.sessions, "create")
       .mockResolvedValue({ id: "cs_test_123", url: "https://checkout.stripe.com/fake" } as never)
 
     const res = await request(app)
@@ -47,7 +47,7 @@ describe("POST /api/orders", () => {
       { _id: "p1", slug: "granite-large", name: "Granite Mortar", size: "Large", price: 68, stock: 1 },
     ] as never)
     const createOrderSpy = jest.spyOn(OrderModel, "create")
-    const createSessionSpy = jest.spyOn(stripe.checkout.sessions, "create")
+    const createSessionSpy = jest.spyOn(stripe!.checkout.sessions, "create")
 
     const res = await request(app)
       .post("/api/orders")

@@ -14,18 +14,21 @@ export const env = {
   mongoUri: required("MONGO_URI"),
   clientUrl: process.env.CLIENT_URL ?? "http://localhost:5173",
   jwtSecret: required("JWT_SECRET"),
+  // Cloudinary/email/Stripe are optional at boot - each feature that needs
+  // one fails clearly when actually used instead of blocking the whole
+  // server (and therefore auth/registration) from starting without them.
   cloudinary: {
-    cloudName: required("CLOUDINARY_CLOUD_NAME"),
-    apiKey: required("CLOUDINARY_API_KEY"),
-    apiSecret: required("CLOUDINARY_API_SECRET"),
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
   },
   email: {
-    resendApiKey: required("RESEND_API_KEY"),
+    resendApiKey: process.env.RESEND_API_KEY,
     from: process.env.EMAIL_FROM ?? "onboarding@resend.dev",
-    contactNotifyTo: required("CONTACT_NOTIFY_EMAIL"),
+    contactNotifyTo: process.env.CONTACT_NOTIFY_EMAIL,
   },
   stripe: {
-    secretKey: required("STRIPE_SECRET_KEY"),
-    webhookSecret: required("STRIPE_WEBHOOK_SECRET"),
+    secretKey: process.env.STRIPE_SECRET_KEY,
+    webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
   },
 }

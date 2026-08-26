@@ -1,4 +1,4 @@
 import Stripe from "stripe"
 import { env } from "./env.js"
 
-export const stripe = new Stripe(env.stripe.secretKey)
+export const stripe = env.stripe.secretKey ? new Stripe(env.stripe.secretKey) : null
